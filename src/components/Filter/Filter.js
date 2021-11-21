@@ -1,10 +1,18 @@
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {
+  // connect,
+  useSelector,
+  useDispatch,
+} from 'react-redux';
 import { changeFilter } from '../../redux/contacts/contacts-actions';
 import { getFilter } from '../../redux/contacts/contacts-selector';
 import s from './Filter.module.css';
 
-function Filter({ value, onChangeFilter }) {
+export default function Filter() {
+  const value = useSelector(state => getFilter(state));
+  const dispatch = useDispatch();
+  // const onChangeFilter = (event) => dispatch(changeFilter(event.target.value));
+
   return (
     <div>
       <h3>Find contacts by name</h3>
@@ -12,7 +20,8 @@ function Filter({ value, onChangeFilter }) {
         className={s.TaskEditor_input}
         type="text"
         value={value}
-        onChange={onChangeFilter}
+        // onChange={onChangeFilter}
+        onChange={(e) => dispatch(changeFilter(e.target.value))}
       />
     </div>
   );
@@ -23,12 +32,12 @@ Filter.propTypes = {
   onchangeFilter: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  value: getFilter(state),
-})
+// const mapStateToProps = state => ({
+//   value: getFilter(state),
+// });
 
-const mapDispatchToProps = dispatch => ({
-  onChangeFilter: (event) => dispatch(changeFilter(event.target.value)),
-})
+// const mapDispatchToProps = dispatch => ({
+//   onChangeFilter: (event) => dispatch(changeFilter(event.target.value)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter)
+// export default connect(mapStateToProps, mapDispatchToProps)(Filter)

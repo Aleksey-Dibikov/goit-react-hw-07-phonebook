@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {
+  // connect,
+  useSelector,
+  useDispatch
+} from 'react-redux';
 import { deleteContact } from '../../redux/contacts/contacts-operations';
 import { getVisibleContacts } from '../../redux/contacts/contacts-selector';
 import s from './ContactList.module.css';
-function ContactList({ contacts, onDeleteContact }) {
+export default function ContactList() {
+  const contacts = useSelector(state => getVisibleContacts(state));
+  const dispatch = useDispatch();
 
   return (
     <ul className={s.TaskList}>
@@ -13,7 +19,7 @@ function ContactList({ contacts, onDeleteContact }) {
           {name} : {number}
           <button
             className={s.TaskList_button}
-            onClick={() => onDeleteContact(id)}
+            onClick={() => dispatch(deleteContact.fulfilled(id))}
           >
             Delete
           </button>
@@ -34,12 +40,12 @@ ContactList.propTypes = {
   ),
 };
 
-const mapStateToProps = (state) => ({
-  contacts: getVisibleContacts(state),
-})
+// const mapStateToProps = (state) => ({
+//   contacts: getVisibleContacts(state),
+// })
 
-const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(deleteContact.fulfilled(id)),
-})
+// const mapDispatchToProps = dispatch => ({
+//   onDeleteContact: id => dispatch(deleteContact.fulfilled(id)),
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+// export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
