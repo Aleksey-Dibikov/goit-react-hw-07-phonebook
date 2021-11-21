@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onFetchContacts: () => dispatch(fetchContacts()),
+  onFetchContacts: () => dispatch(fetchContacts.fulfilled()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -39,7 +39,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(deleteContact(id)),
+  onDeleteContact: id => dispatch(deleteContact.fulfilled(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

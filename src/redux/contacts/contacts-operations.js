@@ -44,7 +44,7 @@ const addContact = createAsyncThunk(
     'contact/addContact',
     async (contact, {rejectWithValue}) => {
         try {
-            const { data } = await axios.post('/contacts', (contact));
+            const { data } = await axios.post('/contacts', contact);
             return data;
         } catch (error) {
             return rejectWithValue(error)
