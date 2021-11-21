@@ -9,7 +9,7 @@ import { getFilter } from '../../redux/contacts/contacts-selector';
 import s from './Filter.module.css';
 
 export default function Filter() {
-  const value = useSelector(state => getFilter(state));
+  const value = useSelector(getFilter);
   const dispatch = useDispatch();
   // const onChangeFilter = (event) => dispatch(changeFilter(event.target.value));
 

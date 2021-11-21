@@ -12,7 +12,7 @@ import { fetchContacts } from './redux/contacts/contacts-operations';
 import { getLoading } from './redux/contacts/contacts-selector';
 
 function App () {
-  const isLoading = useSelector(state => getLoading(state));
+  const isLoading = useSelector(getLoading);
   const dispatch = useDispatch();
 
   return (

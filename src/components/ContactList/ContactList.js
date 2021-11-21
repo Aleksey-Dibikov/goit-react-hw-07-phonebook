@@ -9,7 +9,7 @@ import { deleteContact } from '../../redux/contacts/contacts-operations';
 import { getVisibleContacts } from '../../redux/contacts/contacts-selector';
 import s from './ContactList.module.css';
 export default function ContactList() {
-  const contacts = useSelector(state => getVisibleContacts(state));
+  const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
 
   return (
