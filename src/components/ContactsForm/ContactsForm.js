@@ -87,10 +87,14 @@ ContactsForm.propTypes = {
   number: PropTypes.string,
 };
 
+// const mapStateToProps = (state) => ({
+//   isLoading: state.contacts.loading,
+// });
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddContact: ({name, number}) => dispatch(addContact({name, number})),
   }
 };
 
-  export default connect(null, mapDispatchToProps)(ContactsForm);
+export default connect(null, mapDispatchToProps)(ContactsForm);

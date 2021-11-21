@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteContact, fetchContacts } from '../../redux/contacts/contacts-operations';
+import { deleteContact } from '../../redux/contacts/contacts-operations';
+import { getVisibleContacts } from '../../redux/contacts/contacts-selector';
 import s from './ContactList.module.css';
 function ContactList({ contacts, onDeleteContact }) {
 
@@ -33,20 +34,11 @@ ContactList.propTypes = {
   ),
 };
 
-const visibleContacts = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-
-  return allContacts.filter(({name}) =>
-    name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({contacts: {items, filter}}) => ({
-  contacts: visibleContacts(items, filter)
+const mapStateToProps = (state) => ({
+  contacts: getVisibleContacts(state),
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchContacts: ()=>dispatch(fetchContacts()),
   onDeleteContact: id => dispatch(deleteContact(id)),
 })
 
